@@ -1,0 +1,59 @@
+<section class="events-page">
+  <div class="container">
+    <div class="page-heading mb-5">
+      <h1>Discover Events</h1>
+      <div class="searchbox mb-4">
+        <input type="text"
+        class="form-control"
+        placeholder="Search events by name"
+      [value]="searchTerm()"
+      (input)="searchTerm.set($any($event.target).value)">
+    </div>
+      <p>Find exciting experiences and events happening around you.</p>
+      <span class="badge text-bg-warning">
+        {{ events().length }} Events Available
+      </span>
+    </div>
+    <div class="row g-5">
+      @for(event of filteredEvents(); track event.id) {
+        <div class="col-md-6 col-lg-4">
+          <div class="card event-card h-100 shadow-sm">
+            <div class="event-image flex items-center justify-center">
+              <span>{{ event.category }}</span>
+            </div>
+            <div class="card-body flex flex-col">
+              <span class="badge text-bg-warning event-category">
+                {{ event.category }}
+              </span>
+              <h5 class="card-title mt-3">
+                {{ event.name }}
+              </h5>
+              <p class="card-text">
+                {{ event.description }}
+              </p>
+              <div class="event-info">
+                <p>Location: {{ event.location }}</p>
+                <p>Date: {{ event.date }}</p>
+              </div>
+              <div class="flex items-center justify-between mt-auto pt-3">
+                <span class="event-price">
+                  Rs. {{ event.price }}
+                </span>
+                <button class="btn btn-dark">
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+         </div>
+      }@empty{
+        <div class="col-12">
+            <p class="text-center text-muted">
+                No Events Found
+            </p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+  

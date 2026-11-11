@@ -1,0 +1,77 @@
+
+.event-card {
+  border: none;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12) !important;
+}
+
+.event-image {
+  min-height: 180px;
+  background: linear-gradient(135deg, #111827, #f0ad4e);
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.event-category {
+  width: fit-content;
+}
+
+.event-card .card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.event-card .card-text {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.event-info {
+  color: #555;
+  font-size: 14px;
+}
+
+.event-info p {
+  margin-bottom: 7px;
+}
+
+.event-price {
+  font-size: 18px;
+  font-weight: 800;
+  color: #c17d18;
+}
+
+.event-card button {
+  transition: 0.2s ease;
+}
+
+.event-card button:hover {
+  background: #f0ad4e;
+  border-color: #f0ad4e;
+  color: #111;
+}
+
+.search-box {
+  max-width: 500px;
+}
+
+.search-box input {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.search-box input:focus {
+  border-color: #f0ad4e;
+  box-shadow: 0 0 0 3px rgba(240, 173, 78, 0.2);
+  outline: none;
+}
+  
