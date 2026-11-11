@@ -1,59 +1,153 @@
+
 <section class="events-page">
   <div class="container">
-    <div class="page-heading mb-5">
+
+    <!-- Page Heading -->
+    <div class="page-heading">
       <h1>Discover Events</h1>
-      <div class="searchbox mb-4">
-        <input type="text"
-        class="form-control"
-        placeholder="Search events by name"
-      [value]="searchTerm()"
-      (input)="searchTerm.set($any($event.target).value)">
-    </div>
       <p>Find exciting experiences and events happening around you.</p>
+
       <span class="badge text-bg-warning">
         {{ events().length }} Events Available
       </span>
     </div>
-    <div class="row g-5">
-      @for(event of filteredEvents(); track event.id) {
-        <div class="col-md-6 col-lg-4">
-          <div class="card event-card h-100 shadow-sm">
+
+    <!-- Search -->
+    <div class="search-box">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search events by name..."
+        [value]="searchTerm()"
+        (input)="searchTerm.set($any($event.target).value)"
+      />
+    </div>
+
+    <!-- Filters and Sorting -->
+    <div class="event-controls">
+
+      <div class="category-filters">
+        <button
+          class="btn btn-outline-dark"
+          [class.active]="selectedCategory() === 'All'"
+          (click)="selectedCategory.set('All')">
+          All
+        </button>
+
+        <button
+          class="btn btn-outline-dark"
+          [class.active]="selectedCategory() === 'Music'"
+          (click)="selectedCategory.set('Music')">
+          Music
+        </button>
+
+        <button
+          class="btn btn-outline-dark"
+          [class.active]="selectedCategory() === 'Technology'"
+          (click)="selectedCategory.set('Technology')">
+          Technology
+        </button>
+
+        <button
+          class="btn btn-outline-dark"
+          [class.active]="selectedCategory() === 'Business'"
+          (click)="selectedCategory.set('Business')">
+          Business
+        </button>
+
+        <button
+          class="btn btn-outline-dark"
+          [class.active]="selectedCategory() === 'Sports'"
+          (click)="selectedCategory.set('Sports')">
+          Sports
+        </button>
+
+        <button
+          class="btn btn-outline-dark"
+          [class.active]="selectedCategory() === 'Education'"
+          (click)="selectedCategory.set('Education')">
+          Education
+        </button>
+      </div>
+
+      <div class="sort-container">
+        <label class="form-label fw-semibold">
+          Sort Events By
+        </label>
+
+        <select
+          class="form-select"
+          [value]="sortOption()"
+          (change)="sortOption.set($any($event.target).value)">
+
+          <option value="default">Default</option>
+          <option value="priceLow">Price: Low to High</option>
+          <option value="priceHigh">Price: High to Low</option>
+          <option value="dateEarly">Date: Earliest First</option>
+          <option value="dateLate">Date: Latest First</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- Event Cards -->
+    <div class="row g-4">
+
+      @for(event of sortedEvents(); track event.id) {
+
+        <div class="col-12 col-md-6 col-lg-4">
+
+          <div class="card event-card h-100">
+
             <div class="event-image flex items-center justify-center">
               <span>{{ event.category }}</span>
             </div>
+
             <div class="card-body flex flex-col">
+
               <span class="badge text-bg-warning event-category">
                 {{ event.category }}
               </span>
+
               <h5 class="card-title mt-3">
                 {{ event.name }}
               </h5>
+
               <p class="card-text">
                 {{ event.description }}
               </p>
+
               <div class="event-info">
                 <p>Location: {{ event.location }}</p>
                 <p>Date: {{ event.date }}</p>
               </div>
-              <div class="flex items-center justify-between mt-auto pt-3">
+
+              <div class="event-card-footer flex items-center justify-between mt-auto pt-3">
                 <span class="event-price">
                   Rs. {{ event.price }}
                 </span>
+
                 <button class="btn btn-dark">
                   View Details
                 </button>
               </div>
+
             </div>
           </div>
-         </div>
-      }@empty{
-        <div class="col-12">
-            <p class="text-center text-muted">
-                No Events Found
-            </p>
+
         </div>
+
+      } @empty {
+
+        <div class="col-12">
+          <p class="text-center text-muted">
+            No Events Found
+          </p>
+        </div>
+
       }
+
     </div>
+
   </div>
 </section>
-  

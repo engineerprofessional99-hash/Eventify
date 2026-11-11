@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, Signal, signal } from '@angular/core';
 
 interface EventItem{
   id: number;
@@ -9,7 +9,7 @@ interface EventItem{
   date: string;
   description: string;
 }
-
+type sortOption= 'default'|'priceLow'| 'priceHigh' | 'dateEarly' | 'dateLate';
 @Component({
   imports: [],
   standalone: true,
@@ -19,7 +19,9 @@ interface EventItem{
 })
 export class Events {
   searchTerm = signal("");
-  selectedCategory = signal("All")
+  selectedCategory = signal("All");
+  sortOption = signal<sortOption>('default');
+
   events = signal<EventItem[]>([
     {
       id: 1,
@@ -67,5 +69,30 @@ filteredEvents = computed(() => {
     event.category === this.selectedCategory();
     return matchesSearch && matchesCategory;
   });
+});
+sortedEvents = computed(()=>{
+  const result = [...this.filteredEvents()];
+  switch(this.sortOption()){
+    // case 'default':
+    //   break;
+    case 'priceLow':
+      result.sort((a,b) => a.price - b.price);
+      break;
+    case 'priceHigh':
+      result.sort((a,b) => b.price - a.price);
+      break;
+    case 'dateEarly':
+      result.sort((a, b) => new Date(a.date).getTime()
+       - new Date(b.date).getTime());
+      break;
+    case 'dateLate':
+      result.sort((a, b) => new Date(b.date).getTime()
+       - new Date(a.date).getTime());
+      break;
+      case 'default':
+        this.sortOption();
+      break;
+  }
+  return result;
 });
 }
