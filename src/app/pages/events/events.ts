@@ -1,4 +1,5 @@
 import { Component, computed, Signal, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface EventItem{
   id: number;
@@ -11,7 +12,7 @@ interface EventItem{
 }
 type sortOption= 'default'|'priceLow'| 'priceHigh' | 'dateEarly' | 'dateLate';
 @Component({
-  imports: [],
+  imports: [RouterLink],
   standalone: true,
   selector: 'app-events',
   styleUrl: './events.css',
