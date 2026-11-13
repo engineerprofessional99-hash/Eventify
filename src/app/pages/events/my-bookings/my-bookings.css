@@ -1,0 +1,39 @@
+:host {
+  display: block;
+}
+/* Ticket shadow and hover */
+.ticket-card {
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.ticket-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+}
+/* Perforated ticket divider */
+.ticket-info {
+  border-left: 2px dashed #f59e0b;
+  position: relative;
+}
+/* Barcode decoration */
+.ticket-barcode {
+  height: 42px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    #1e293b 0px,
+    #1e293b 3px,
+    transparent 3px,
+    transparent 6px,
+    #1e293b 6px,
+    #1e293b 8px,
+    transparent 8px,
+    transparent 11px
+  );
+}
+@media (max-width: 767px) {
+  .ticket-info {
+    border-left: none;
+    border-top: 2px dashed #f59e0b;
+  }
+}

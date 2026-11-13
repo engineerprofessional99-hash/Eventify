@@ -95,15 +95,15 @@
 
       @for(event of filteredEvents(); track event.id) {
 
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4 ">
 
-          <div class="card event-card h-100">
+          <div class="card event-card h-100 ">
 
-            <div class="event-image flex items-center justify-center">
+            <div class="event-image flex items-center justify-center ">
               <span>{{ event.category }}</span>
             </div>
 
-            <div class="card-body flex flex-col">
+            <div class="card-body flex flex-col ">
 
               <span class="badge text-bg-warning event-category">
                 {{ event.category }}
@@ -128,7 +128,7 @@
                 </span>
 
                 <button class="btn btn-dark"
-                [routerLink]="['/events',event.id]">
+                [routerLink]="['/events', event.id]">
                   View Details
                 </button>
               </div>

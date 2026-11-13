@@ -50,6 +50,18 @@ export class Home {
 constructor(private router: Router) {}
   selectCategory(category: string) {
     this.selectedCategory.set(category);
+      if (category === 'All Events') {
+        this.router.navigate(['/events']);
+        return;
+      } const event = this.featuredEvents.find(items => items.category === category);
+      if(event){
+        this.router.navigate(['/events',event.id]);
+      }else{
+        this.router.navigate(['/events'],{
+          queryParams: {category: category}
+        })
+      }
+
   }
   searchEvents() {
     const search = this.searchText().trim();

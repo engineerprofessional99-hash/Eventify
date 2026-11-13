@@ -1,1 +1,88 @@
-<p>event-details works!</p>
+<div class="details-page">
+  @if(selectedEvents(); as event) {
+    <div class="container py-4">
+      <!-- 1. Back Navigation -->
+      <div class="mb-4">
+        <button
+          class="btn btn-outline-dark back-button"
+          routerLink="/events">
+          ← Back to Events
+        </button>
+      </div>
+      <!-- 2. Main Event Card -->
+      <div class="card details-card border-0 shadow-sm">
+        <!-- 3. Event Image -->
+        <div class="details-image-wrapper">
+          <img
+            [src]="event.image"
+            [alt]="event.name"
+            class="details-image">
+          <span class="badge text-bg-warning image-category">
+            {{ event.category }}
+          </span>
+        </div>
+        <!-- 4. Event Content -->
+        <div class="card-body p-4 p-lg-5">
+          <!-- 5. Event Heading -->
+          <div class="event-heading mb-4">
+            <h1 class="details-title">
+              {{ event.name }}
+            </h1>
+            <p class="text-muted">
+              Discover an exciting experience with Eventify.
+            </p>
+          </div>
+          <!-- 6. Event Information -->
+          <div class="row g-3 event-information">
+            <div class="col-12 col-md-4">
+              <div class="info-box ring-1 ring-gray-300">
+                <span class="info-label ">LOCATION</span>
+                <h5>{{ event.location }}</h5>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="info-box ring-1 ring-gray-300">
+                <span class="info-label">EVENT DATE</span>
+                <h5>{{ event.date }}</h5>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="info-box ring-1 ring-gray-300">
+                <span class="info-label">TICKET PRICE</span>
+                <h5>Rs. {{ event.price }}</h5>
+              </div>
+            </div>
+          </div>
+          <!-- 7. Event Description -->
+          <div class="event-description mt-5">
+            <h3>About This Event</h3>
+            <p>{{ event.description }}</p>
+          </div>
+          <!-- 8. Bottom Action -->
+          <div class="event-action mt-4">
+            <button [routerLink]="['/events', eventId, 'booking']"
+              class="btn btn-dark booking-button">
+              Continue to Booking
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  } @else {
+
+    <!-- 9. Event Not Found -->
+    <div class="container text-center py-50">
+      <h2 class="text-muted"> Event Not Found</h2>
+      <p class="text-muted">
+        The event you are looking for is not available.
+      </p>
+      <button class="btn btn-dark" routerLink="/events">
+        Explore Events
+      </button>
+    </div>
+
+  }
+
+</div>

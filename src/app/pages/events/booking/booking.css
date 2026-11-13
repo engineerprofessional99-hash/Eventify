@@ -1,0 +1,40 @@
+
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100%;
+}
+.booking-page {
+  color: #1f2937;
+  font-family: inherit;
+}
+/* Smooth form interaction */
+.booking-page input,
+.booking-page select,
+.booking-page textarea {
+  font-family: inherit;
+}
+/* Keep the summary readable */
+.booking-page .booking-summary {
+  transition: box-shadow 0.25s ease;
+}
+.booking-page .booking-summary:hover {
+  box-shadow: 0 8px 24px rgba(146, 93, 18, 0.07);
+}
+/* Button interaction */
+.booking-page button {
+  cursor: pointer;
+}
+/* Better mobile text handling */
+@media (max-width: 480px) {
+  .booking-page {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .booking-page input,
+  .booking-page select,
+  .booking-page textarea {
+    font-size: 16px;
+  }
+}

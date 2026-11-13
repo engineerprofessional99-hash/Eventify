@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [],
@@ -6,4 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './about.css',
   templateUrl: './about.html',
 })
-export class About {}
+export class About {
+  private router = inject(Router);
+  exploreEvents() {
+    this.router.navigate(['/events']);
+  }
+}

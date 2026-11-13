@@ -1,7 +1,7 @@
 
 .navbar {
-    /* position: fixed; */
-    /* width: 100%; */
+    /* position: sticky; */
+    width: 100%;
     padding: 14px 0;
 }
 

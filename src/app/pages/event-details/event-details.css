@@ -1,0 +1,164 @@
+
+/* 1. Main Page */
+
+.details-page {
+  min-height: 85vh;
+  background: #f5f6f8;
+  padding-bottom: 50px;
+}
+
+/* 2. Main Card */
+
+.details-card {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* 3. Event Image */
+
+.details-image-wrapper {
+  height: 380px;
+  position: relative;
+  overflow: hidden;
+}
+
+.details-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.image-category {
+  position: absolute;
+  bottom: 20px;
+  left: 25px;
+  padding: 9px 16px;
+  font-size: 13px;
+  border-radius: 20px;
+}
+
+/* 4. Heading */
+
+.details-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.event-heading p {
+  font-size: 15px;
+}
+
+/* 5. Information Boxes */
+
+.info-box {
+  height: 100%;
+  padding: 20px;
+  background: #f8f9fa;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.info-label {
+  display: block;
+  color: #9ca3af;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.info-box h5 {
+  color: #111827;
+  font-weight: 700;
+  font-size: 17px;
+  margin: 0;
+}
+
+/* 6. Description */
+
+.event-description {
+  max-width: 850px;
+}
+
+.event-description h3 {
+  font-size: 23px;
+  font-weight: 750;
+  margin-bottom: 15px;
+}
+
+.event-description p {
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* 7. Buttons */
+
+.back-button,
+.booking-button {
+  padding: 11px 22px;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.booking-button {
+  min-width: 190px;
+}
+
+.booking-button:hover {
+  background: #f0ad4e;
+  border-color: #f0ad4e;
+  color: #111;
+}
+
+/* 8. Tablet */
+
+@media (max-width: 768px) {
+  .details-image-wrapper {
+    height: 280px;
+  }
+
+  .details-title {
+    font-size: 29px;
+  }
+}
+
+/* 9. Mobile */
+
+@media (max-width: 576px) {
+  .details-page {
+    padding-bottom: 25px;
+  }
+
+  .details-image-wrapper {
+    height: 210px;
+  }
+
+  .details-card {
+    border-radius: 12px;
+  }
+
+  .details-title {
+    font-size: 25px;
+  }
+
+  .image-category {
+    left: 15px;
+    bottom: 15px;
+  }
+
+  .info-box {
+    padding: 16px;
+  }
+
+  .booking-button {
+    width: 100%;
+  }
+
+  .event-action {
+    width: 100%;
+  }
+}

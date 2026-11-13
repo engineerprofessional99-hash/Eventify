@@ -1,0 +1,302 @@
+<section class="booking-page min-h-screen bg-stone-100 px-4 py-10 md:px-8 md:py-14">
+  <div class="mx-auto max-w-4xl">
+    <!-- Page Heading -->
+    <div class="mb-8 text-center">
+      <span class="mb-3 inline-block rounded-full bg-amber-100 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-amber-800">
+        Eventify Reservations
+      </span>
+      <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 md:text-4xl">
+        Complete Your Booking
+      </h2>
+      <p class="mt-3 text-sm leading-relaxed text-gray-500 md:text-base">
+        Enter your details below to reserve your tickets.
+      </p>
+    </div>
+    <!-- Booking Form Card -->
+    <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl shadow-gray-200/60">
+      <div class="h-1.5 bg-gradient-to-r from-amber-700 via-amber-500 to-yellow-300"></div>
+      <div class="p-5 md:p-10">
+        <form
+          class="flex flex-col gap-8"
+          [formGroup]="bookingForm"
+          (ngSubmit)="submitBookings()"
+        >
+          <!-- Personal Information -->
+          <div>
+            <div class="mb-5 flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-stone-100 text-lg">
+                <span>👤</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-gray-900">
+                  Personal Information
+                </h3>
+                <p class="text-xs text-gray-500">
+                  Tell us how to contact you.
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <!-- Full Name -->
+              <div class="md:col-span-2">
+                <label for="fullName" class="mb-2 block text-sm font-semibold text-gray-700">
+                  Full Name
+                </label>
+                <input
+                  id="fullName"
+                  class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-amber-600 focus:bg-white focus:ring-4 focus:ring-amber-100"
+                  type="text"
+                  placeholder="Enter your name"
+                  formControlName="fullName"
+                >
+                @if (bookingForm.controls.fullName.touched && bookingForm.controls.fullName.hasError('required')) {
+                  <p class="mt-2 text-xs font-medium text-red-600">
+                    Full Name is required
+                  </p>
+                }
+                @if (bookingForm.controls.fullName.touched && bookingForm.controls.fullName.hasError('minlength')) {
+                  <p class="mt-2 text-xs font-medium text-red-600">
+                    Name must be at least 3 characters.
+                  </p>
+                }
+              </div>
+              <!-- Email -->
+              <div>
+                <label for="emailAddress" class="mb-2 block text-sm font-semibold text-gray-700">
+                  Email Address
+                </label>
+                <input
+                  id="emailAddress"
+                  class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-amber-600 focus:bg-white focus:ring-4 focus:ring-amber-100"
+                  type="email"
+                  placeholder="Enter your email"
+                  formControlName="emailAddress"
+                >
+                @if (bookingForm.controls.emailAddress.touched) {
+                  @if (bookingForm.controls.emailAddress.hasError('required')) {
+                    <p class="mt-2 text-xs font-medium text-red-600">
+                      Email address is required.
+                    </p>
+                  }
+                  @if (bookingForm.controls.emailAddress.hasError('email')) {
+                    <p class="mt-2 text-xs font-medium text-red-600">
+                      Please enter a valid email address.
+                    </p>
+                  }
+                }
+              </div>
+              <!-- Phone -->
+              <div>
+                <label for="phoneNumber" class="mb-2 block text-sm font-semibold text-gray-700">
+                  Phone Number
+                </label>
+                <input
+                  id="phoneNumber"
+                  class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-amber-600 focus:bg-white focus:ring-4 focus:ring-amber-100"
+                  type="tel"
+                  placeholder="Enter your phone number"
+                  formControlName="phoneNumber"
+                >
+                @if (bookingForm.controls.phoneNumber.touched && bookingForm.controls.phoneNumber.hasError('required')) {
+                  <p class="mt-2 text-xs font-medium text-red-600">
+                    Phone number is required
+                  </p>
+                }
+                @if (bookingForm.controls.phoneNumber.touched && bookingForm.controls.phoneNumber.hasError('minlength')) {
+                  <p class="mt-2 text-xs font-medium text-red-600">
+                    atleast 10 characters
+                  </p>
+                }
+                @if (bookingForm.controls.emailAddress.hasError('maxlength')) {
+                  <p class="mt-2 text-xs font-medium text-red-600">
+                    No more than 15 characters!
+                  </p>
+                }
+              </div>
+            </div>
+          </div>
+          <!-- Divider -->
+          <div class="border-t border-gray-100"></div>
+          <!-- Ticket Information -->
+          <div>
+            <div class="mb-5 flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-stone-100 text-lg">
+                <span>🎟️</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-gray-900">
+                  Ticket Information
+                </h3>
+                <p class="text-xs text-gray-500">
+                  Choose your tickets and add any requests.
+                </p>
+              </div>
+            </div>
+            <div class="flex flex-col gap-5">
+              <!-- Number of Tickets -->
+              <div>
+                <label for="noOfTickets" class="mb-2 block text-sm font-semibold text-gray-700">
+                  Number of Tickets
+                </label>
+                <select
+                  id="noOfTickets"
+                  class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-amber-600 focus:bg-white focus:ring-4 focus:ring-amber-100"
+                  formControlName="noOfTickets"
+                >
+                  <option value="">Select tickets</option>
+                  <option value="1">1 Ticket</option>
+                  <option value="2">2 Tickets</option>
+                  <option value="3">3 Tickets</option>
+                  <option value="4">4 Tickets</option>
+                  <option value="5">5 Tickets</option>
+                </select>
+                @if (bookingForm.controls.noOfTickets.hasError('max')) {
+                  <p class="mt-2 text-xs font-medium text-red-600">
+                    You can book a maximum of 5 tickets.
+                  </p>
+                }
+              </div>
+              <!-- Special Requests -->
+              <div>
+                <label for="specialRequests" class="mb-2 block text-sm font-semibold text-gray-700">
+                  Special Requests
+                  <span class="font-normal text-gray-400">(Optional)</span>
+                </label>
+                <textarea
+                  id="specialRequests"
+                  class="w-full resize-y rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-amber-600 focus:bg-white focus:ring-4 focus:ring-amber-100"
+                  rows="3"
+                  placeholder="Any additional requirements?"
+                  formControlName="specialRequests"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <!-- Booking Summary -->
+          <div class="rounded-2xl border border-amber-200 bg-amber-50/60 p-5 md:p-6">
+            <div class="mb-5 flex items-center justify-between">
+              <h3 class="text-lg font-bold text-gray-900">
+                Booking Summary
+              </h3>
+              <span class="rounded-full bg-white px-3 py-1 text-xs font-semibold text-amber-800">
+                Summary
+              </span>
+            </div>
+            @if (selectedEvent(); as event) {
+              <div class="flex flex-col gap-4">
+                <div class="flex justify-between gap-3 text-sm">
+                  <span class="text-gray-600">Event</span>
+                  <strong class="text-right font-semibold text-gray-900">
+                    {{ event.name }}
+                  </strong>
+                </div>
+                <div class="flex justify-between gap-3 text-sm">
+                  <span class="text-gray-600">Price per ticket</span>
+                  <strong class="text-gray-900">
+                    Rs. {{ event.price }}
+                  </strong>
+                </div>
+                <div class="flex justify-between gap-3 text-sm">
+                  <span class="text-gray-600">Number of tickets</span>
+                  <strong class="text-gray-900">
+                    {{ formValues().noOfTickets }}
+                  </strong>
+                </div>
+                <div class="border-t border-amber-200 pt-4">
+                  <div class="flex items-center justify-between gap-3">
+                    <strong class="text-base text-gray-900">
+                      Total Amount
+                    </strong>
+                    <strong class="text-2xl font-extrabold text-amber-800">
+                      Rs. {{ totalAmount() }}
+                    </strong>
+                  </div>
+                </div>
+              </div>
+            } @else {
+              <p class="text-sm text-red-600">
+                Event not found.
+              </p>
+            }
+          </div>
+        <!-- Success Message -->
+          @if (bookingSuccess()) {
+            <div class="rounded-xl border border-green-200 bg-green-50 p-4 text-sm font-medium text-green-800">
+              Your booking has been confirmed successfully!
+            </div>
+          }
+          <!-- Buttons -->
+          <div class="flex flex-col gap-3 sm:flex-row">
+            <button
+              class="w-full rounded-xl bg-gray-900 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-gray-900/10 transition hover:-translate-y-0.5 hover:bg-gray-700 active:translate-y-0 sm:flex-1"
+              type="submit"
+            >
+              Confirm Booking
+          </button>
+            <button
+              class="w-full rounded-xl border border-gray-300 bg-white px-6 py-3.5 text-sm font-bold text-gray-700 transition hover:border-gray-400 hover:bg-gray-50 sm:w-auto"
+              type="button"
+              (click)="resetForm()"
+            >
+              Reset Form
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Live Booking Information -->
+    <div class="mt-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg shadow-gray-200/40">
+      <div class="border-b border-gray-100 px-5 py-5 md:px-7">
+        <h3 class="text-lg font-bold text-gray-900">
+          Your Booking Information
+        </h3>
+        <p class="mt-1 text-sm text-gray-500">
+          Live preview of the information you have entered.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 gap-4 p-5 sm:grid-cols-2 md:p-7">
+        <div class="rounded-xl bg-gray-50 p-4">
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">
+            Full Name
+          </p>
+          <p class="mt-2 break-words text-sm font-semibold text-gray-900">
+            {{ formValues().fullName }}
+          </p>
+        </div>
+        <div class="rounded-xl bg-gray-50 p-4">
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">
+            Email
+          </p>
+          <p class="mt-2 break-words text-sm font-semibold text-gray-900">
+            {{ formValues().emailAddress }}
+          </p>
+        </div>
+        <div class="rounded-xl bg-gray-50 p-4">
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">
+            Phone
+          </p>
+          <p class="mt-2 break-words text-sm font-semibold text-gray-900">
+            {{ formValues().phoneNumber }}
+          </p>
+        </div>
+        <div class="rounded-xl bg-gray-50 p-4">
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">
+            Tickets
+          </p>
+          <p class="mt-2 text-sm font-semibold text-gray-900">
+            {{ formValues().noOfTickets }}
+          </p>
+        </div>
+        <div class="rounded-xl bg-gray-50 p-4 sm:col-span-2">
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">
+            Special Requests
+          </p>
+          <p class="mt-2 break-words text-sm font-semibold text-gray-900">
+            {{ formValues().specialRequests }}
+          </p>
+        </div>
+        <button class="my-booking btn btn-outline-dark w-fit rounded-x1 bg-gray shadow-lg shadow-gray-200/40 " (click)="myBooking()">My Bookings</button>
+      </div>
+    </div>
+  </div>
+</section>
