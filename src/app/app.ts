@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { AuthService } from './services/auth/auth-service';
 
 @Component({
   imports: [RouterLink, RouterLinkActive, RouterOutlet],
@@ -10,37 +11,47 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 export class App {
   protected readonly title = signal('eventify');
   menuOpen = signal(false);
-  currentUser = signal("Guest");
-  isLoggedIn = signal(false);
+
+  private authService = inject(AuthService);
+
+  isLoggedIn = this.authService.isLoggedIn;
+
+  currentUser = computed(() =>
+    this.authService.currentUser()?.username ?? 'Guest'
+  );
 
   navItems = [
-    {label: 'Home', route: '/home'},
-    {label: 'Events', route: '/events'},
-    {label: 'About', route: '/about'},
-    {label: 'Contact', route: '/contact'},
-    // {label: 'Login', route: '/login'},
+    { label: 'Home', route: '/home' },
+    { label: 'Events', route: '/events' },
+    { label: 'About', route: '/about' },
+    { label: 'Contact', route: '/contact' },
   ];
-  constructor(private router: Router){}
-  logIn(){
+
+  constructor(private router: Router) {
+    this.authService.loadSession();
+  }
+
+  logIn() {
     this.closeMenu();
     this.router.navigate(['/login']);
   }
 
-  toggleMenu(){
-    this.menuOpen.update(value=>!value);
+  toggleMenu() {
+    this.menuOpen.update(value => !value);
   }
-  closeMenu(){
+
+  closeMenu() {
     this.menuOpen.set(false);
   }
-  getStarted(){
-    this.closeMenu();
-    this.router.navigate(['/registeration']);
-  }
 
-  logOut(){
-    this.isLoggedIn.set(false);
+  getStarted() {
     this.closeMenu();
     this.router.navigate(['/login']);
-    this.currentUser.set('Guest');
+  }
+
+  logOut() {
+    this.closeMenu();
+    this.authService.logOut();
+    this.router.navigate(['/login']);
   }
 }

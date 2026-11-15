@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth-service';
 // type Category = 'All Events' | 'Music' | 'Technology' | 'Business' | 'Sports' | 'Education';
 
 @Component({
@@ -87,5 +88,12 @@ constructor(private router: Router) {}
   viewDetails(id: number) {
     this.router.navigate(['/events', id]);
   };
-}
   
+  private authService = inject(AuthService);
+  private route = inject(Router);
+  
+  logOut() {
+    this.authService.logOut();
+    this.route.navigate(['/login']);
+  }
+}

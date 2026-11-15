@@ -1,12 +1,13 @@
 <nav class="navbar navbar-expand-lg bg-dark">
   <div class="container-fluid px-4">
-    <a class="navbar-brand text-white fw-bold"
-       routerLink="/home"
-       (click)="closeMenu()">
+    <a
+      class="navbar-brand text-white fw-bold"
+      routerLink="/home"
+      (click)="closeMenu()">
       Eventify
     </a>
     <button
-      class="navbar-toggler bg-light"
+      class="navbar-toggler bg-primary"
       type="button"
       (click)="toggleMenu()">
       <span class="navbar-toggler-icon"></span>
@@ -26,7 +27,8 @@
       <div class="nav-actions flex flex-col lg:flex-row items-center gap-3">
         @if(isLoggedIn()) {
           <span class="text-white">
-            Welcome, {{ currentUser() }}
+            <!-- Welcome, {{ currentUser() }} -->
+
           </span>
           <button
             class="btn btn-outline-light"
@@ -34,20 +36,24 @@
             Logout
           </button>
         } @else {
+
           <button
-            class="btn btn-outline-light"
+            class="btn btn-outline-light bg-violet-600"
             (click)="logIn()">
             Login
           </button>
-
           <button
             class="btn event-btn"
             (click)="getStarted()">
-            Get Started
+            Sign Up
           </button>
+
         }
+
       </div>
+
     </div>
   </div>
 </nav>
+
 <router-outlet />
