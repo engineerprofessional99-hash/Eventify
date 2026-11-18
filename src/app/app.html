@@ -1,59 +1,6 @@
-<nav class="navbar navbar-expand-lg bg-dark">
-  <div class="container-fluid px-4">
-    <a
-      class="navbar-brand text-white fw-bold"
-      routerLink="/home"
-      (click)="closeMenu()">
-      Eventify
-    </a>
-    <button
-      class="navbar-toggler bg-primary"
-      type="button"
-      (click)="toggleMenu()">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="nav-content" [class.open]="menuOpen()">
-      <div class="nav-links flex flex-col lg:flex-row items-center gap-6">
-        @for(item of navItems; track item.route) {
-          <a
-            class="nav-link text-white"
-            [routerLink]="item.route"
-            routerLinkActive="active"
-            (click)="closeMenu()">
-            {{ item.label }}
-          </a>
-        }
-      </div>
-      <div class="nav-actions flex flex-col lg:flex-row items-center gap-3">
-        @if(isLoggedIn()) {
-          <span class="text-white">
-            <!-- Welcome, {{ currentUser() }} -->
-
-          </span>
-          <button
-            class="btn btn-outline-light"
-            (click)="logOut()">
-            Logout
-          </button>
-        } @else {
-
-          <button
-            class="btn btn-outline-light bg-violet-600"
-            (click)="logIn()">
-            Login
-          </button>
-          <button
-            class="btn event-btn"
-            (click)="getStarted()">
-            Sign Up
-          </button>
-
-        }
-
-      </div>
-
-    </div>
-  </div>
-</nav>
-
-<router-outlet />
+<app-navbar></app-navbar>
+<main class="pt-19">  
+  <router-outlet />
+  <app-footer></app-footer>
+</main>
+  

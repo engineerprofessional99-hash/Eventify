@@ -19,8 +19,13 @@ export class AuthService {
     private https = inject(HttpClient);
     isLoggedIn = signal(false);
     currentUser = signal<AuthResponse | null>(null);
-
+    private adminUsername = 'admin';
     // isLoading = signal(true);
+
+    isAdmin(){
+        this.currentUser()?.username === this.adminUsername;
+    }
+
     logIn(){
         this.isLoggedIn.set(true);
     }

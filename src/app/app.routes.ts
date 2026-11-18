@@ -9,6 +9,9 @@ import { MyBookings } from './pages/events/my-bookings/my-bookings';
 import { Login } from './auth/login/login';
 import { authGuard } from './auth/auth-guard/auth-guard';
 import { guestGuard } from './auth/guest-guard/guest-guard-guard';
+import { ContactMessage } from './pages/contact/contact-message/contact-message';
+import { AdminGuard } from './auth/admin-guard/admin-guard';
+// import { Navbar } from './pages/layout/navbar/navbar';
 
 export const routes: Routes = [
     { 
@@ -34,6 +37,9 @@ export const routes: Routes = [
     },
     { 
         path: 'my-bookings', component: MyBookings, canActivate: [authGuard] 
+    },
+    {
+        path: 'contact-message', component: ContactMessage, canActivate: [authGuard]
     },
     { 
         path: '', redirectTo: 'home', pathMatch: 'full'
